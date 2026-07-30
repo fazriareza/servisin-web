@@ -177,6 +177,9 @@
   .art-card h3 { font-size:15.5px; font-weight:800; letter-spacing:-.01em; margin-top:8px; line-height:1.32; }
   .art-card p { font-size:13px; color:var(--text-muted); margin-top:6px; flex:1; }
   .art-card .ameta { display:flex; align-items:center; gap:7px; margin-top:14px; font-size:11.5px; color:var(--text-faint); }
+  .art-readmore { margin-top:14px; font-size:12.5px; font-weight:700; color:var(--accent-deep); display:inline-flex; align-items:center; gap:5px; }
+  .art-readmore:hover { text-decoration:underline; }
+  .art-card:hover h3 { color:var(--accent-deep); transition:color .14s; }
   .art-note { text-align:center; margin-top:22px; font-size:13px; color:var(--text-faint); max-width:60ch; margin-left:auto; margin-right:auto; }
   footer { border-top: 1px solid var(--border); background: var(--surface); padding: 36px 0; }
   .foot-inner { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
@@ -422,7 +425,7 @@
           <h2 style="font-size:clamp(24px,3.6vw,32px);font-weight:800;letter-spacing:-.02em;margin-top:10px">Update teknologi terkini</h2>
           <p style="color:var(--text-muted);font-size:16px;margin-top:10px;max-width:54ch">Berita &amp; wawasan dunia teknologi untuk komunitas — biar kamu &amp; sesama tukang servis selalu up-to-date.</p>
         </div>
-        <span class="art-badge">🔄 Diperbarui otomatis · tiap 2 hari</span>
+        <span class="art-badge">✅ Dikurasi dari sumber tepercaya</span>
       </div>
       <div class="art-grid">
         <article class="art-card">
@@ -431,7 +434,7 @@
             <span class="cat">Gadget</span>
             <h3>USB-C jadi standar tunggal — apa dampaknya untuk servis?</h3>
             <p>Satu port untuk semua perangkat mengubah cara konter menyetok charger &amp; konektor.</p>
-            <div class="ameta"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> Teknologi · terbaru</div>
+            <a class="art-readmore" href="https://en.wikipedia.org/wiki/USB-C" target="_blank" rel="noopener">Baca selengkapnya →</a>
           </div>
         </article>
         <article class="art-card">
@@ -440,7 +443,7 @@
             <span class="cat">Perangkat</span>
             <h3>Layar AMOLED vs LCD: mana yang lebih awet &amp; mudah diperbaiki?</h3>
             <p>Perbedaan teknologi layar yang wajib dipahami sebelum menerima order ganti LCD.</p>
-            <div class="ameta"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> Teknologi · terbaru</div>
+            <a class="art-readmore" href="https://en.wikipedia.org/wiki/AMOLED" target="_blank" rel="noopener">Baca selengkapnya →</a>
           </div>
         </article>
         <article class="art-card">
@@ -449,11 +452,11 @@
             <span class="cat">Tren</span>
             <h3>Chip AI di HP: fitur pintar yang mulai jadi standar</h3>
             <p>Apa arti "prosesor AI" di smartphone terbaru — dan bagaimana pengaruhnya ke perbaikan.</p>
-            <div class="ameta"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> Teknologi · terbaru</div>
+            <a class="art-readmore" href="https://en.wikipedia.org/wiki/AI_accelerator" target="_blank" rel="noopener">Baca selengkapnya →</a>
           </div>
         </article>
       </div>
-      <p class="art-note">Contoh tampilan — artikel asli terisi <b>otomatis</b> dari sumber berita teknologi tepercaya, lengkap dengan tautan ke sumbernya.</p>
+      <p class="art-note">Contoh tampilan — artikel dikurasi dari sumber tepercaya dan disetujui admin sebelum tayang, lalu <b>tersimpan sebagai arsip</b> yang bisa dibaca kapan saja.</p>
     </div>
   </section>
 
