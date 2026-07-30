@@ -77,7 +77,16 @@
   .nav-r .masuk{font-size:14.5px;font-weight:700;color:var(--muted)}
   .nav-r .masuk:hover{color:var(--teal-deep)}
   .btn-sm{padding:10px 18px;font-size:14px;border-radius:11px}
-  @media(max-width:820px){.nav-links{display:none}}
+  @media(max-width:820px){.nav-links{display:none}.nav-r .masuk{display:none}.nav-toggle{display:grid}}
+  .nav-toggle{display:none;width:42px;height:42px;border-radius:11px;border:1px solid var(--line-strong);background:var(--surface);color:var(--ink);place-items:center;cursor:pointer;padding:0;flex:none}
+  .nav-toggle .ico-close{display:none}
+  .nav-toggle[aria-expanded="true"] .ico-open{display:none}
+  .nav-toggle[aria-expanded="true"] .ico-close{display:block}
+  .mobile-menu{display:none;flex-direction:column;gap:2px;padding:10px 24px 20px;background:color-mix(in srgb,var(--paper) 94%,transparent);backdrop-filter:saturate(1.5) blur(14px);border-bottom:1px solid var(--line)}
+  .mobile-menu.open{display:flex}
+  .mobile-menu a{font-size:16px;font-weight:600;color:var(--muted);padding:12px 4px;border-bottom:1px solid var(--line)}
+  .mobile-menu a.btn{color:var(--on-teal);border-bottom:0;justify-content:center;padding:13px 22px}
+  @media(max-width:560px){.comm{padding:46px 22px}}
 
   /* ============ HERO ============ */
   .hero{position:relative;padding:72px 0 40px;text-align:center}
@@ -230,7 +239,20 @@
     <div class="nav-r">
       <a class="masuk" href="https://fazriareza.github.io/servisin-app/masuk" target="_blank" rel="noopener">Masuk</a>
       <a class="btn btn-primary btn-sm" href="https://fazriareza.github.io/servisin-app/" target="_blank" rel="noopener">Coba Gratis</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Buka menu" aria-expanded="false">
+        <svg class="ico-open" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <svg class="ico-close" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
     </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#fitur">Fitur</a>
+    <a href="#cara-kerja">Cara Kerja</a>
+    <a href="#harga">Harga</a>
+    <a href="#artikel">Artikel</a>
+    <a href="#komunitas">Komunitas</a>
+    <a href="https://fazriareza.github.io/servisin-app/masuk" target="_blank" rel="noopener">Masuk</a>
+    <a class="btn btn-primary" href="https://fazriareza.github.io/servisin-app/" target="_blank" rel="noopener" style="margin-top:8px">Coba Gratis</a>
   </div>
 </header>
 
@@ -493,6 +515,10 @@
   // reveal on scroll
   const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
   document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+  // mobile menu
+  const tgl=document.getElementById('navToggle'),mm=document.getElementById('mobileMenu');
+  tgl.addEventListener('click',()=>{const o=mm.classList.toggle('open');tgl.setAttribute('aria-expanded',o);});
+  mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{mm.classList.remove('open');tgl.setAttribute('aria-expanded','false');}));
 </script>
 </body>
 </html>
