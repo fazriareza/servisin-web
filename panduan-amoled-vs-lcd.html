@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AMOLED vs LCD: Panduan Singkat untuk Teknisi — Servisin</title>
+<meta name="description" content="Ringkasan perbedaan layar AMOLED dan LCD, serta artinya untuk usaha servis HP.">
+<style>
+  :root{
+    --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --accent:#0D9488; --accent-deep:#0F766E; --on-accent:#fff;
+    --bg:#F4F8F8; --surface:#fff; --surface-2:#F1F7F6; --border:#DCE7E6;
+    --text:#0F1A1B; --muted:#566765; --faint:#8A9C9A;
+    --shadow:0 1px 2px rgba(10,30,28,.05),0 10px 26px -14px rgba(10,30,28,.18);
+  }
+  @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+    --accent:#2DD4BF; --accent-deep:#5EEAD4; --on-accent:#04201C;
+    --bg:#0B1413; --surface:#111F1E; --surface-2:#162A28; --border:#243937;
+    --text:#E6F1EF; --muted:#91A6A3; --faint:#647E7B;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 12px 32px -16px rgba(0,0,0,.7);
+  }}
+  :root[data-theme="dark"]{
+    --accent:#2DD4BF; --accent-deep:#5EEAD4; --on-accent:#04201C;
+    --bg:#0B1413; --surface:#111F1E; --surface-2:#162A28; --border:#243937;
+    --text:#E6F1EF; --muted:#91A6A3; --faint:#647E7B;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 12px 32px -16px rgba(0,0,0,.7);
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  body{margin:0;font-family:var(--font-sans);background:var(--bg);color:var(--text);line-height:1.7}
+  a{color:var(--accent-deep)}
+  .wrap{max-width:720px;margin:0 auto;padding:0 22px}
+  header{border-bottom:1px solid var(--border);background:var(--surface)}
+  .hin{display:flex;align-items:center;gap:10px;min-height:60px}
+  .logo{display:flex;align-items:center;gap:9px;font-weight:800;font-size:18px;letter-spacing:-.02em;text-decoration:none;color:var(--text)}
+  .logo b{color:var(--accent)}
+  .mark{width:30px;height:30px;border-radius:9px;background:linear-gradient(150deg,var(--accent),var(--accent-deep));display:grid;place-items:center;color:var(--on-accent)}
+  .back{margin-left:auto;font-size:14px;font-weight:600;text-decoration:none;color:var(--muted)}
+  .sample{background:color-mix(in srgb,var(--accent) 12%,var(--surface));border-bottom:1px solid var(--border);color:var(--accent-deep);font-size:12.5px;font-weight:600;text-align:center;padding:8px 16px}
+  .hero{padding:38px 0 8px}
+  .eyebrow{font-size:11.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-deep)}
+  h1{font-size:clamp(24px,4.5vw,34px);line-height:1.15;letter-spacing:-.02em;margin:12px 0 10px;text-wrap:balance}
+  .meta{font-size:13px;color:var(--faint);display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  article{padding:20px 0 10px;font-size:16px;color:var(--text)}
+  article h2{font-size:20px;letter-spacing:-.01em;margin:30px 0 8px}
+  article p{margin:0 0 14px;color:var(--muted)}
+  article strong{color:var(--text)}
+  article ul{margin:0 0 14px;padding-left:20px;color:var(--muted)}
+  article li{margin:5px 0}
+  .callout{background:var(--surface-2);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:0 12px 12px 0;padding:14px 16px;margin:18px 0;font-size:14.5px;color:var(--muted)}
+  .source{margin-top:26px;padding:14px 16px;background:var(--surface);border:1px solid var(--border);border-radius:12px;font-size:13px;color:var(--faint)}
+  .source b{color:var(--muted)}
+  .cta{margin:30px 0 10px;background:linear-gradient(160deg,color-mix(in srgb,var(--accent) 14%,var(--surface)),var(--surface));border:1px solid color-mix(in srgb,var(--accent) 28%,var(--border));border-radius:16px;padding:24px;text-align:center;box-shadow:var(--shadow)}
+  .cta h3{font-size:19px;font-weight:800;letter-spacing:-.02em}
+  .cta p{color:var(--muted);font-size:14.5px;margin:8px 0 16px}
+  .btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:var(--on-accent);text-decoration:none;font-weight:700;border-radius:12px;padding:12px 20px}
+  footer{border-top:1px solid var(--border);margin-top:30px;padding:24px 0;color:var(--faint);font-size:12.5px;text-align:center}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap hin">
+    <a class="logo" href="index.html"><span class="mark"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg></span>Servis<b>in</b></a>
+    <a class="back" href="index.html#artikel">← Semua artikel</a>
+  </div>
+</header>
+<div class="sample">📄 Contoh artikel — memperlihatkan bentuk artikel rangkuman yang dibaca langsung di Servisin</div>
+
+<div class="wrap">
+  <div class="hero">
+    <span class="eyebrow">Artikel · Perangkat</span>
+    <h1>AMOLED vs LCD: Panduan Singkat untuk Teknisi</h1>
+    <div class="meta"><span>Ringkasan Redaksi</span> · <span>4 menit baca</span></div>
+  </div>
+
+  <article>
+    <p>Salah satu keputusan pertama saat menerima order ganti layar adalah mengenali jenis panelnya. Dua yang paling umum di HP adalah <strong>AMOLED</strong> dan <strong>LCD (IPS)</strong> — dan keduanya berbeda dari cara kerja sampai biaya penggantian. Artikel ringkas ini merangkum perbedaannya dari sudut pandang usaha servis.</p>
+
+    <h2>Bedanya di mana?</h2>
+    <p><strong>AMOLED</strong> memancarkan cahaya per-piksel: tiap piksel menyala sendiri. Efeknya hitamnya benar-benar pekat, kontras tinggi, panel lebih tipis, dan hemat daya untuk warna gelap. <strong>LCD/IPS</strong> memakai lampu latar (backlight) yang menyinari seluruh panel, sehingga hitamnya cenderung keabu-abuan tapi umumnya lebih murah dan tahan.</p>
+
+    <h2>Artinya untuk servis</h2>
+    <ul>
+      <li><strong>Biaya part:</strong> LCD original biasanya lebih murah &amp; stoknya melimpah; AMOLED (apalagi model flagship) jauh lebih mahal.</li>
+      <li><strong>Risiko burn-in:</strong> AMOLED bisa "berbayang" jika menampilkan gambar statis terlalu lama — perlu diinfokan ke pelanggan.</li>
+      <li><strong>Penanganan:</strong> panel AMOLED lebih tipis &amp; rapuh; hati-hati saat membuka.</li>
+    </ul>
+
+    <div class="callout">💡 <strong>Tips konter:</strong> selalu cek jenis panel &amp; sampaikan estimasi biaya di awal. Selisih harga AMOLED vs LCD sering jadi sumber salah paham dengan pelanggan.</div>
+
+    <h2>Cara cepat membedakan</h2>
+    <p>Tampilkan gambar hitam penuh di ruangan gelap: kalau area hitam benar-benar "mati" tanpa cahaya bocor, kemungkinan besar AMOLED. Kalau hitamnya tampak abu-abu dengan sedikit cahaya latar, itu ciri khas LCD.</p>
+
+    <div class="source">
+      <b>Sumber:</b> Ringkasan redaksi Servisin, dirangkum dari materi teknis tepercaya — dengan tautan ke sumber asli. <br>
+      <span style="color:var(--faint)">(Di aplikasi asli, tiap artikel disetujui admin sebelum tayang &amp; mencantumkan tautan sumbernya.)</span>
+    </div>
+
+    <div class="cta">
+      <h3>Kelola servismu lebih rapi</h3>
+      <p>Servisin bantu konter mengelola antrian, lacak servis, kasir &amp; stok — plus komunitas.</p>
+      <a class="btn" href="index.html">Coba Servisin Gratis</a>
+    </div>
+  </article>
+</div>
+
+<footer>© 2026 Servisin · Dibuat untuk para pejuang servis Indonesia. 🇮🇩</footer>
+</body>
+</html>
