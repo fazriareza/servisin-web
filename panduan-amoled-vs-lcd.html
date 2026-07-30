@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AMOLED vs LCD: Panduan Singkat untuk Teknisi — Servisin</title>
-<meta name="description" content="Ringkasan perbedaan layar AMOLED dan LCD, serta artinya untuk usaha servis HP.">
+<title>AMOLED vs LCD: Panduan Lengkap untuk Teknisi HP — Servisin</title>
+<meta name="description" content="Panduan lengkap perbedaan layar AMOLED dan LCD: cara kerja, perbandingan, jenis part pengganti, kerusakan umum, dan artinya untuk usaha servis.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
@@ -13,96 +13,237 @@
     --font-display:'Sora',ui-sans-serif,system-ui,sans-serif;
     --font-sans:'Plus Jakarta Sans',ui-sans-serif,system-ui,-apple-system,sans-serif;
     --font-mono:'JetBrains Mono',ui-monospace,monospace;
-    --accent:#0D9488; --accent-deep:#0F766E; --on-accent:#fff;
-    --bg:#F4F8F8; --surface:#fff; --surface-2:#F1F7F6; --border:#DCE7E6;
-    --text:#0F1A1B; --muted:#566765; --faint:#8A9C9A;
-    --shadow:0 1px 2px rgba(10,30,28,.05),0 10px 26px -14px rgba(10,30,28,.18);
+    --teal:#0D9488; --teal-bright:#14B8A6; --teal-deep:#0F766E; --on-teal:#fff;
+    --ink:#0B1A18; --muted:#4E625F; --faint:#869B97;
+    --paper:#F5F9F8; --surface:#fff; --surface-2:#EDF4F3; --line:#E2ECEA; --line-strong:#CEDEDB;
+    --shadow-sm:0 1px 2px rgba(11,26,24,.05);
+    --shadow:0 4px 14px -6px rgba(11,26,24,.10),0 14px 40px -18px rgba(11,26,24,.12);
   }
-  @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-    --accent:#2DD4BF; --accent-deep:#5EEAD4; --on-accent:#04201C;
-    --bg:#0B1413; --surface:#111F1E; --surface-2:#162A28; --border:#243937;
-    --text:#E6F1EF; --muted:#91A6A3; --faint:#647E7B;
-    --shadow:0 1px 2px rgba(0,0,0,.4),0 12px 32px -16px rgba(0,0,0,.7);
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --teal:#2DD4BF; --teal-bright:#5EEAD4; --teal-deep:#5EEAD4; --on-teal:#04201C;
+    --ink:#E9F2F0; --muted:#9DB0AD; --faint:#647E7A;
+    --paper:#07110F; --surface:#0E1B19; --surface-2:#0B1615; --line:#1E302D; --line-strong:#2C433F;
+    --shadow-sm:0 1px 2px rgba(0,0,0,.4);
+    --shadow:0 4px 14px -6px rgba(0,0,0,.5),0 20px 50px -20px rgba(0,0,0,.6);
   }}
   :root[data-theme="dark"]{
-    --accent:#2DD4BF; --accent-deep:#5EEAD4; --on-accent:#04201C;
-    --bg:#0B1413; --surface:#111F1E; --surface-2:#162A28; --border:#243937;
-    --text:#E6F1EF; --muted:#91A6A3; --faint:#647E7B;
-    --shadow:0 1px 2px rgba(0,0,0,.4),0 12px 32px -16px rgba(0,0,0,.7);
+    --teal:#2DD4BF; --teal-bright:#5EEAD4; --teal-deep:#5EEAD4; --on-teal:#04201C;
+    --ink:#E9F2F0; --muted:#9DB0AD; --faint:#647E7A;
+    --paper:#07110F; --surface:#0E1B19; --surface-2:#0B1615; --line:#1E302D; --line-strong:#2C433F;
+    --shadow-sm:0 1px 2px rgba(0,0,0,.4);
+    --shadow:0 4px 14px -6px rgba(0,0,0,.5),0 20px 50px -20px rgba(0,0,0,.6);
   }
   *,*::before,*::after{box-sizing:border-box}
-  body{margin:0;font-family:var(--font-sans);background:var(--bg);color:var(--text);line-height:1.7}
-  a{color:var(--accent-deep)}
-  .wrap{max-width:720px;margin:0 auto;padding:0 22px}
-  header{border-bottom:1px solid var(--border);background:var(--surface)}
-  .hin{display:flex;align-items:center;gap:10px;min-height:60px}
-  .logo{display:flex;align-items:center;gap:9px;font-weight:800;font-size:18px;letter-spacing:-.02em;text-decoration:none;color:var(--text)}
-  .logo b{color:var(--accent)}
-  .mark{width:30px;height:30px;border-radius:9px;background:linear-gradient(150deg,var(--accent),var(--accent-deep));display:grid;place-items:center;color:var(--on-accent)}
-  .back{margin-left:auto;font-size:14px;font-weight:600;text-decoration:none;color:var(--muted)}
-  .sample{background:color-mix(in srgb,var(--accent) 12%,var(--surface));border-bottom:1px solid var(--border);color:var(--accent-deep);font-size:12.5px;font-weight:600;text-align:center;padding:8px 16px}
-  .hero{padding:38px 0 8px}
-  .eyebrow{font-size:11.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-deep)}
-  h1{font-family:var(--font-display);font-size:clamp(24px,4.5vw,34px);line-height:1.12;letter-spacing:-.03em;margin:12px 0 10px;text-wrap:balance}
-  .meta{font-size:13px;color:var(--faint);display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-  article{padding:20px 0 10px;font-size:16px;color:var(--text)}
-  article h2{font-family:var(--font-display);font-size:21px;font-weight:700;letter-spacing:-.02em;margin:30px 0 8px}
-  article p{margin:0 0 14px;color:var(--muted)}
-  article strong{color:var(--text)}
-  article ul{margin:0 0 14px;padding-left:20px;color:var(--muted)}
-  article li{margin:5px 0}
-  .callout{background:var(--surface-2);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:0 12px 12px 0;padding:14px 16px;margin:18px 0;font-size:14.5px;color:var(--muted)}
-  .source{margin-top:26px;padding:14px 16px;background:var(--surface);border:1px solid var(--border);border-radius:12px;font-size:13px;color:var(--faint)}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:var(--font-sans);background:var(--paper);color:var(--ink);line-height:1.72;-webkit-font-smoothing:antialiased}
+  a{color:var(--teal-deep)}
+  .wrap{max-width:740px;margin:0 auto;padding:0 22px}
+  header{border-bottom:1px solid var(--line);background:var(--surface);position:sticky;top:0;z-index:10}
+  .hin{display:flex;align-items:center;gap:10px;min-height:62px}
+  .logo{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:800;font-size:19px;letter-spacing:-.02em;text-decoration:none;color:var(--ink)}
+  .logo b{color:var(--teal)}
+  .mk{width:32px;height:32px;border-radius:10px;background:linear-gradient(150deg,var(--teal-bright),var(--teal-deep));display:grid;place-items:center;color:var(--on-teal)}
+  .back{margin-left:auto;font-size:14px;font-weight:700;text-decoration:none;color:var(--muted)}
+  .back:hover{color:var(--teal-deep)}
+  .sample{background:color-mix(in srgb,var(--teal) 12%,var(--surface));border-bottom:1px solid var(--line);color:var(--teal-deep);font-size:12.5px;font-weight:600;text-align:center;padding:9px 16px}
+  .hero{padding:40px 0 6px}
+  .eyebrow{font-family:var(--font-mono);font-size:11.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--teal-deep)}
+  h1{font-family:var(--font-display);font-size:clamp(26px,5vw,40px);line-height:1.1;letter-spacing:-.03em;margin:14px 0 12px;text-wrap:balance;font-weight:800}
+  .meta{font-size:13px;color:var(--faint);display:flex;gap:10px;flex-wrap:wrap;align-items:center;font-family:var(--font-mono)}
+  article{padding:14px 0 10px;font-size:16.5px}
+  article h2{font-family:var(--font-display);font-size:22px;font-weight:700;letter-spacing:-.02em;margin:38px 0 10px}
+  article h3{font-family:var(--font-display);font-size:17px;font-weight:700;margin:24px 0 6px}
+  article p{margin:0 0 15px;color:var(--muted)}
+  article strong{color:var(--ink);font-weight:700}
+  article ul{margin:0 0 15px;padding-left:4px;color:var(--muted);list-style:none}
+  article ul li{position:relative;padding-left:26px;margin:9px 0}
+  article ul li::before{content:"";position:absolute;left:4px;top:10px;width:7px;height:7px;border-radius:2px;background:var(--teal)}
+  .lead-p{font-size:18px;color:var(--ink)!important;line-height:1.7}
+  figure{margin:26px 0}
+  figure svg{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:16px;background:var(--surface);box-shadow:var(--shadow-sm)}
+  figcaption{font-size:12.5px;color:var(--faint);text-align:center;margin-top:10px;font-style:italic}
+  .cmp{width:100%;overflow-x:auto;border:1px solid var(--line);border-radius:14px;margin:20px 0;box-shadow:var(--shadow-sm)}
+  table{border-collapse:collapse;width:100%;font-size:14px;min-width:460px;background:var(--surface)}
+  th,td{padding:12px 15px;text-align:left;border-bottom:1px solid var(--line)}
+  thead th{background:var(--surface-2);font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:600}
+  tbody tr:last-child td{border-bottom:0}
+  td:first-child{font-weight:600;color:var(--ink)}
+  td .amo{color:var(--teal-deep);font-weight:600}
+  .callout{background:var(--surface-2);border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:0 14px 14px 0;padding:16px 18px;margin:22px 0;font-size:15px;color:var(--muted)}
+  .callout b{color:var(--ink)}
+  .source{margin-top:30px;padding:15px 17px;background:var(--surface);border:1px solid var(--line);border-radius:14px;font-size:13px;color:var(--faint)}
   .source b{color:var(--muted)}
-  .cta{margin:30px 0 10px;background:linear-gradient(160deg,color-mix(in srgb,var(--accent) 14%,var(--surface)),var(--surface));border:1px solid color-mix(in srgb,var(--accent) 28%,var(--border));border-radius:16px;padding:24px;text-align:center;box-shadow:var(--shadow)}
-  .cta h3{font-size:19px;font-weight:800;letter-spacing:-.02em}
+  .cta{margin:32px 0 12px;background:linear-gradient(160deg,color-mix(in srgb,var(--teal) 14%,var(--surface)),var(--surface));border:1px solid color-mix(in srgb,var(--teal) 28%,var(--line));border-radius:18px;padding:26px;text-align:center;box-shadow:var(--shadow-sm)}
+  .cta h3{font-family:var(--font-display);font-size:20px;font-weight:800;letter-spacing:-.02em;margin:0}
   .cta p{color:var(--muted);font-size:14.5px;margin:8px 0 16px}
-  .btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:var(--on-accent);text-decoration:none;font-weight:700;border-radius:12px;padding:12px 20px}
-  footer{border-top:1px solid var(--border);margin-top:30px;padding:24px 0;color:var(--faint);font-size:12.5px;text-align:center}
+  .btn{display:inline-flex;align-items:center;gap:8px;background:var(--teal);color:var(--on-teal);text-decoration:none;font-weight:700;border-radius:12px;padding:13px 22px}
+  footer{border-top:1px solid var(--line);margin-top:34px;padding:26px 0;color:var(--faint);font-size:12.5px;text-align:center}
+  :focus-visible{outline:2.5px solid var(--teal);outline-offset:3px;border-radius:6px}
 </style>
 </head>
 <body>
 <header>
   <div class="wrap hin">
-    <a class="logo" href="index.html"><span class="mark"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg></span>Servis<b>in</b></a>
+    <a class="logo" href="index.html"><span class="mk"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg></span>Servis<b>in</b></a>
     <a class="back" href="index.html#artikel">← Semua artikel</a>
   </div>
 </header>
-<div class="sample">📄 Contoh artikel — memperlihatkan bentuk artikel rangkuman yang dibaca langsung di Servisin</div>
+<div class="sample">📄 Contoh artikel — memperlihatkan bentuk artikel lengkap yang dibaca langsung di Servisin</div>
 
 <div class="wrap">
   <div class="hero">
     <span class="eyebrow">Artikel · Perangkat</span>
-    <h1>AMOLED vs LCD: Panduan Singkat untuk Teknisi</h1>
-    <div class="meta"><span>Ringkasan Redaksi</span> · <span>4 menit baca</span></div>
+    <h1>AMOLED vs LCD: Panduan Lengkap untuk Teknisi HP</h1>
+    <div class="meta"><span>Ringkasan Redaksi Servisin</span><span>·</span><span>8 menit baca</span></div>
   </div>
 
   <article>
-    <p>Salah satu keputusan pertama saat menerima order ganti layar adalah mengenali jenis panelnya. Dua yang paling umum di HP adalah <strong>AMOLED</strong> dan <strong>LCD (IPS)</strong> — dan keduanya berbeda dari cara kerja sampai biaya penggantian. Artikel ringkas ini merangkum perbedaannya dari sudut pandang usaha servis.</p>
+    <!-- HERO ILUSTRASI -->
+    <figure>
+      <svg viewBox="0 0 680 240" role="img" aria-label="Ilustrasi dua layar smartphone: AMOLED dan LCD">
+        <defs>
+          <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#0D9488" stop-opacity=".14"/><stop offset="1" stop-color="#0D9488" stop-opacity=".03"/>
+          </linearGradient>
+          <linearGradient id="amo" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#14B8A6"/><stop offset="1" stop-color="#0F766E"/>
+          </linearGradient>
+        </defs>
+        <rect width="680" height="240" rx="16" fill="url(#bg)"/>
+        <!-- phone kiri: AMOLED (hitam pekat) -->
+        <g transform="translate(210 34)">
+          <rect x="0" y="0" width="120" height="172" rx="18" fill="#0b1412" stroke="#0F766E" stroke-width="2"/>
+          <rect x="8" y="8" width="104" height="156" rx="12" fill="#05100e"/>
+          <circle cx="60" cy="20" r="3" fill="#14B8A6" opacity=".6"/>
+          <rect x="22" y="70" width="76" height="9" rx="4" fill="url(#amo)"/>
+          <rect x="22" y="86" width="52" height="7" rx="3" fill="#14B8A6" opacity=".5"/>
+          <text x="60" y="150" font-family="monospace" font-size="9" fill="#5EEAD4" text-anchor="middle">AMOLED</text>
+        </g>
+        <!-- phone kanan: LCD (hitam keabuan) -->
+        <g transform="translate(350 34)">
+          <rect x="0" y="0" width="120" height="172" rx="18" fill="#152220" stroke="#CEDEDB" stroke-width="2"/>
+          <rect x="8" y="8" width="104" height="156" rx="12" fill="#2b3a37"/>
+          <circle cx="60" cy="20" r="3" fill="#8aa3a0"/>
+          <rect x="22" y="70" width="76" height="9" rx="4" fill="#9fbdb9"/>
+          <rect x="22" y="86" width="52" height="7" rx="3" fill="#7d9995"/>
+          <text x="60" y="150" font-family="monospace" font-size="9" fill="#cfe0dd" text-anchor="middle">LCD / IPS</text>
+        </g>
+      </svg>
+      <figcaption>Pada latar hitam: AMOLED (kiri) benar-benar gelap, LCD (kanan) tampak keabu-abuan karena lampu latar.</figcaption>
+    </figure>
 
-    <h2>Bedanya di mana?</h2>
-    <p><strong>AMOLED</strong> memancarkan cahaya per-piksel: tiap piksel menyala sendiri. Efeknya hitamnya benar-benar pekat, kontras tinggi, panel lebih tipis, dan hemat daya untuk warna gelap. <strong>LCD/IPS</strong> memakai lampu latar (backlight) yang menyinari seluruh panel, sehingga hitamnya cenderung keabu-abuan tapi umumnya lebih murah dan tahan.</p>
+    <p class="lead-p">Salah satu keputusan pertama saat menerima order ganti layar adalah mengenali jenis panelnya. Dua yang paling umum di HP adalah <strong>AMOLED</strong> dan <strong>LCD (IPS)</strong> — dan keduanya berbeda dari cara kerja, harga part, sampai jenis kerusakannya. Salah mengenali bisa berujung salah kasih harga, salah pesan part, atau salah janji ke pelanggan. Panduan ini membedah semuanya dari sudut pandang usaha servis.</p>
 
-    <h2>Artinya untuk servis</h2>
+    <h2>Bagaimana LCD (IPS) bekerja</h2>
+    <p>LCD (<em>Liquid Crystal Display</em>) tidak menghasilkan cahaya sendiri. Di belakang panel ada <strong>lampu latar (backlight)</strong> — biasanya deretan LED — yang menyala terus. Cahayanya menembus lapisan <strong>kristal cair</strong> yang berfungsi seperti "gerbang": memutar untuk mengatur seberapa banyak cahaya lolos, lalu melewati <strong>filter warna</strong> (merah, hijau, biru) hingga membentuk gambar.</p>
+    <p>Karena lampu latar selalu menyala, warna hitam di LCD sebenarnya adalah "kristal yang menutup cahaya semaksimal mungkin" — tapi selalu ada sedikit bocor, sehingga hitamnya cenderung <strong>keabu-abuan</strong>. Kelebihannya: teknologinya matang, murah, dan tahan lama (nyaris tak ada burn-in).</p>
+
+    <h2>Bagaimana AMOLED bekerja</h2>
+    <p>AMOLED (<em>Active-Matrix Organic LED</em>) justru sebaliknya: <strong>setiap piksel menyala sendiri</strong>. Tidak ada lampu latar sama sekali. Kalau sebuah piksel harus menampilkan hitam, ia cukup <strong>dimatikan</strong> — hasilnya hitam yang benar-benar pekat dan kontras sangat tinggi.</p>
+    <p>Karena tak butuh lapisan lampu latar, panel AMOLED bisa dibuat <strong>lebih tipis</strong>, bahkan <strong>lentur</strong> (dipakai di HP lipat). Warnanya lebih pekat, dan lebih hemat daya saat menampilkan konten gelap (inilah alasan <em>dark mode</em> lebih irit di HP AMOLED).</p>
+
+    <!-- DIAGRAM CARA KERJA -->
+    <figure>
+      <svg viewBox="0 0 680 320" role="img" aria-label="Diagram perbandingan cara kerja LCD dan AMOLED">
+        <rect width="680" height="320" rx="16" fill="var(--surface)"/>
+        <line x1="340" y1="24" x2="340" y2="296" stroke="var(--line)" stroke-width="1.5" stroke-dasharray="5 5"/>
+        <!-- LCD kiri -->
+        <text x="60" y="44" font-family="Sora,sans-serif" font-size="17" font-weight="700" fill="var(--ink)">LCD</text>
+        <text x="60" y="64" font-family="monospace" font-size="11" fill="var(--faint)">cahaya menembus dari belakang</text>
+        <!-- layers -->
+        <rect x="60" y="86" width="220" height="26" rx="6" fill="#f2b705" opacity=".85"/><text x="170" y="103" font-family="sans-serif" font-size="11" fill="#3a2e00" text-anchor="middle" font-weight="600">Lampu latar (backlight)</text>
+        <rect x="60" y="120" width="220" height="26" rx="6" fill="#9fbdb9"/><text x="170" y="137" font-family="sans-serif" font-size="11" fill="#12332f" text-anchor="middle" font-weight="600">Kristal cair (gerbang)</text>
+        <rect x="60" y="154" width="220" height="26" rx="6" fill="#0D9488" opacity=".7"/><text x="170" y="171" font-family="sans-serif" font-size="11" fill="#fff" text-anchor="middle" font-weight="600">Filter warna R G B</text>
+        <rect x="60" y="188" width="220" height="16" rx="5" fill="var(--line-strong)"/><text x="170" y="200" font-family="sans-serif" font-size="10" fill="var(--muted)" text-anchor="middle">Kaca</text>
+        <!-- arrows up -->
+        <g stroke="#f2b705" stroke-width="2" opacity=".9">
+          <line x1="100" y1="86" x2="100" y2="66" marker-end="url(#ar)"/>
+          <line x1="170" y1="86" x2="170" y2="66" marker-end="url(#ar)"/>
+          <line x1="240" y1="86" x2="240" y2="66" marker-end="url(#ar)"/>
+        </g>
+        <text x="170" y="240" font-family="sans-serif" font-size="12" fill="var(--muted)" text-anchor="middle">Hitam = kristal menutup cahaya</text>
+        <text x="170" y="258" font-family="sans-serif" font-size="12" fill="var(--muted)" text-anchor="middle">(tetap sedikit bocor → keabuan)</text>
+        <defs><marker id="ar" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M1 1L7 4L1 7Z" fill="#f2b705"/></marker></defs>
+        <!-- AMOLED kanan -->
+        <text x="380" y="44" font-family="Sora,sans-serif" font-size="17" font-weight="700" fill="var(--teal-deep)">AMOLED</text>
+        <text x="380" y="64" font-family="monospace" font-size="11" fill="var(--faint)">tiap piksel menyala sendiri</text>
+        <!-- pixel grid -->
+        <g>
+          <rect x="380" y="86" width="34" height="34" rx="5" fill="#14B8A6"/>
+          <rect x="420" y="86" width="34" height="34" rx="5" fill="#0b1412"/>
+          <rect x="460" y="86" width="34" height="34" rx="5" fill="#e0475b"/>
+          <rect x="500" y="86" width="34" height="34" rx="5" fill="#0b1412"/>
+          <rect x="540" y="86" width="34" height="34" rx="5" fill="#3b82f6"/>
+          <rect x="380" y="126" width="34" height="34" rx="5" fill="#0b1412"/>
+          <rect x="420" y="126" width="34" height="34" rx="5" fill="#14B8A6"/>
+          <rect x="460" y="126" width="34" height="34" rx="5" fill="#0b1412"/>
+          <rect x="500" y="126" width="34" height="34" rx="5" fill="#f2b705"/>
+          <rect x="540" y="126" width="34" height="34" rx="5" fill="#0b1412"/>
+          <rect x="380" y="166" width="34" height="34" rx="5" fill="#e0475b"/>
+          <rect x="420" y="166" width="34" height="34" rx="5" fill="#0b1412"/>
+          <rect x="460" y="166" width="34" height="34" rx="5" fill="#14B8A6"/>
+          <rect x="500" y="166" width="34" height="34" rx="5" fill="#0b1412"/>
+          <rect x="540" y="166" width="34" height="34" rx="5" fill="#3b82f6"/>
+        </g>
+        <text x="477" y="240" font-family="sans-serif" font-size="12" fill="var(--muted)" text-anchor="middle">Hitam = piksel dimatikan total</text>
+        <text x="477" y="258" font-family="sans-serif" font-size="12" fill="var(--muted)" text-anchor="middle">(hitam pekat + hemat daya)</text>
+      </svg>
+      <figcaption>LCD memakai lampu latar yang menembus lapisan; AMOLED tidak — tiap piksel adalah lampu mininya sendiri.</figcaption>
+    </figure>
+
+    <h2>Perbandingan singkat</h2>
+    <div class="cmp">
+      <table>
+        <thead><tr><th>Aspek</th><th>AMOLED</th><th>LCD / IPS</th></tr></thead>
+        <tbody>
+          <tr><td>Warna hitam</td><td><span class="amo">Pekat sempurna</span></td><td>Keabu-abuan</td></tr>
+          <tr><td>Kontras</td><td><span class="amo">Sangat tinggi</span></td><td>Sedang</td></tr>
+          <tr><td>Ketebalan</td><td><span class="amo">Tipis, bisa lentur</span></td><td>Lebih tebal</td></tr>
+          <tr><td>Hemat daya (mode gelap)</td><td><span class="amo">Ya</span></td><td>Tidak (backlight tetap nyala)</td></tr>
+          <tr><td>Harga part</td><td>Mahal</td><td><span class="amo">Lebih murah</span></td></tr>
+          <tr><td>Ketahanan / burn-in</td><td>Rentan burn-in</td><td><span class="amo">Tahan, tanpa burn-in</span></td></tr>
+          <tr><td>Ketersediaan part</td><td>Terbatas (apalagi flagship)</td><td><span class="amo">Melimpah</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Yang paling penting: dari sisi servis</h2>
+    <h3>1. Biaya &amp; ketersediaan part</h3>
+    <p>LCD original umumnya <strong>lebih murah dan stoknya melimpah</strong> — mudah dicari di supplier mana pun. AMOLED (terutama flagship Samsung/iPhone dan layar HP lipat) <strong>jauh lebih mahal</strong> dan kadang langka. Selalu cek harga part <em>sebelum</em> memberi estimasi ke pelanggan.</p>
+
+    <h3>2. Jenis part pengganti</h3>
     <ul>
-      <li><strong>Biaya part:</strong> LCD original biasanya lebih murah &amp; stoknya melimpah; AMOLED (apalagi model flagship) jauh lebih mahal.</li>
-      <li><strong>Risiko burn-in:</strong> AMOLED bisa "berbayang" jika menampilkan gambar statis terlalu lama — perlu diinfokan ke pelanggan.</li>
-      <li><strong>Penanganan:</strong> panel AMOLED lebih tipis &amp; rapuh; hati-hati saat membuka.</li>
+      <li><strong>Original / Service Pack:</strong> kualitas terbaik, warna &amp; sentuhan persis pabrikan — tapi paling mahal.</li>
+      <li><strong>Aftermarket OLED:</strong> lebih murah dari original, kualitas bervariasi tergantung grade.</li>
+      <li><strong>Incell / LCD pengganti (khusus sebagian iPhone):</strong> alternatif LCD untuk menggantikan panel OLED asli — jauh lebih murah, cocok untuk pelanggan berbudget terbatas, dengan konsekuensi warna &amp; kecerahan sedikit berbeda. <strong>Wajib diinfokan ke pelanggan.</strong></li>
     </ul>
 
-    <div class="callout">💡 <strong>Tips konter:</strong> selalu cek jenis panel &amp; sampaikan estimasi biaya di awal. Selisih harga AMOLED vs LCD sering jadi sumber salah paham dengan pelanggan.</div>
+    <h3>3. Kerusakan umum yang perlu dikenali</h3>
+    <ul>
+      <li><strong>AMOLED:</strong> <em>green line</em> (garis hijau setelah jatuh/tertekan), <em>burn-in</em> (bayangan gambar statis), titik/blok mati, semburat merah muda.</li>
+      <li><strong>LCD:</strong> layar putih polos, garis-garis, lampu latar mati (gambar gelap tapi sentuhan jalan), atau blok gelap akibat tertekan.</li>
+    </ul>
 
-    <h2>Cara cepat membedakan</h2>
-    <p>Tampilkan gambar hitam penuh di ruangan gelap: kalau area hitam benar-benar "mati" tanpa cahaya bocor, kemungkinan besar AMOLED. Kalau hitamnya tampak abu-abu dengan sedikit cahaya latar, itu ciri khas LCD.</p>
+    <div class="callout">💡 <strong>Tips konter:</strong> pada kebanyakan HP modern, <strong>kaca, panel, dan touchscreen sudah menyatu jadi satu unit (assembly)</strong>. Retak di kaca sering berarti ganti satu set — bukan cuma kacanya. Jelaskan ini di awal agar pelanggan paham kenapa biayanya sekian.</div>
+
+    <h2>Cara cepat membedakan di meja servis</h2>
+    <ul>
+      <li><strong>Tes layar hitam:</strong> tampilkan gambar hitam penuh di ruangan agak gelap. Kalau area hitam benar-benar "mati" tanpa cahaya → AMOLED. Kalau abu-abu dengan cahaya latar samar → LCD.</li>
+      <li><strong>Fitur Always-On Display:</strong> HP yang punya AOD (jam selalu tampil di layar mati) hampir pasti AMOLED.</li>
+      <li><strong>Cek spesifikasi:</strong> paling pasti — cek tipe HP-nya, biasanya tertera "Super AMOLED", "OLED", atau "IPS LCD".</li>
+    </ul>
+
+    <h2>Kesimpulan</h2>
+    <p>Mengenali jenis panel bukan sekadar soal teknis — ini menentukan <strong>harga, pilihan part, dan janji yang kamu berikan ke pelanggan</strong>. AMOLED unggul di tampilan tapi mahal &amp; rentan burn-in; LCD lebih terjangkau &amp; tahan. Dengan mengenalinya di awal, kamu bisa menawarkan opsi yang jujur (original vs aftermarket vs incell) beserta konsekuensinya — dan itulah yang bikin pelanggan percaya &amp; balik lagi.</p>
 
     <div class="source">
-      <b>Sumber:</b> Ringkasan redaksi Servisin, dirangkum dari materi teknis tepercaya — dengan tautan ke sumber asli. <br>
-      <span style="color:var(--faint)">(Di aplikasi asli, tiap artikel disetujui admin sebelum tayang &amp; mencantumkan tautan sumbernya.)</span>
+      <b>Sumber:</b> Ringkasan redaksi Servisin, dirangkum dari materi teknis tepercaya — dilengkapi tautan ke sumber asli. <br>
+      <span>(Di aplikasi Servisin, tiap artikel disetujui admin sebelum tayang, mencantumkan sumbernya, lalu tersimpan sebagai arsip yang bisa dibaca kapan saja.)</span>
     </div>
 
     <div class="cta">
       <h3>Kelola servismu lebih rapi</h3>
-      <p>Servisin bantu konter mengelola antrian, lacak servis, kasir &amp; stok — plus komunitas.</p>
+      <p>Servisin bantu konter mengelola antrian, lacak servis, kasir &amp; stok sparepart — plus komunitas.</p>
       <a class="btn" href="index.html">Coba Servisin Gratis</a>
     </div>
   </article>
